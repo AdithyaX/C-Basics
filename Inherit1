@@ -1,0 +1,69 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Inherit1
+{
+    public class Person
+    {
+        public string name;
+        public string birthday;
+        public Person(string name, string birthday)
+        {
+            this.name = name;
+            this.birthday = birthday;
+        }
+        public Person(){}
+
+        public void print()
+        {
+            Console.WriteLine("The name of the person is {0} and birthday is {1}.", name, birthday);
+        }
+        
+    }
+
+    public class Student : Person
+    {
+        public string batch;
+        public string course;
+
+        public Student(string batch, string course)
+        {
+            this.batch = batch;
+            this.course = course;
+        }
+        public void print()
+        {
+            Console.WriteLine("The batch of the student is {0} and course is {1}.", batch, course);
+        }
+    }
+
+    public class Instructor : Person
+    {
+        public double salary;
+        public Instructor(double salary)
+        {
+            this.salary = salary;
+        }
+
+        public void print()
+        {
+            Console.WriteLine("The salary of the instructor is {0}.", salary);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Instructor i1 = new Instructor(30000.00);
+            i1.print();
+            Student s1 = new Student("BE2009", "CSE");
+            s1.print();
+            Person p1 = new Person("Adithya", "22/08/1990");
+            p1.print();
+            Console.ReadKey();
+        }
+    }
+}
