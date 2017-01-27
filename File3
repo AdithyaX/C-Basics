@@ -1,0 +1,30 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.IO;
+using System.Threading.Tasks;
+
+namespace File3
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {            
+            string source = "E:/MyDataFile.txt";
+            string dest = "E:/testdir/MyDataFile.txt";
+            if (File.Exists(source))
+            {
+                File.Move(source, dest);
+                Console.WriteLine("Moved file {0} to {1}", source, dest);
+            }
+
+            else if (File.Exists(dest))
+            {
+                File.Move(dest, source);
+                Console.WriteLine("Moved file {0} to {1}", dest, source);
+            }
+            Console.ReadKey();
+        }
+    }
+}
