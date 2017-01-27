@@ -1,0 +1,132 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Reflection;
+
+namespace Reflection1
+{
+    public class Base
+    {
+        private int addone = 30;
+
+        public int Addone
+        {
+            get { return addone; }
+            set { addone = value; }
+        }
+
+        private int addtwo = 10;
+
+        public int Addtwo
+        {
+            get { return addtwo; }
+            set { addtwo = value; }
+        }
+
+        private int subone = 10;
+
+        public int Subone
+        {
+            get { return subone; }
+            set { subone = value; }
+        }
+
+        private int subtwo = 10;
+
+        public int Subtwo
+        {
+            get { return subtwo; }
+            set { subtwo = value; }
+        }
+
+        private int facto = 5;
+
+        public int Facto
+        {
+            get { return facto; }
+            set { facto = value; }
+        }
+
+        
+        int fact;
+        double root = 81;
+        public void Add(int addone, int addtwo)
+        {
+            Console.WriteLine(addone + addtwo);
+        }
+
+        public void Subtract(int subone, int subtwo)
+        {
+            Console.WriteLine(subone - subtwo);
+        }
+
+        public bool IsPositive(int pos)
+        {
+            if (pos >= 0)
+            {
+                Console.WriteLine("Number is positive.");
+                return true;
+            }
+
+            else
+            {
+                Console.WriteLine("Number is negative.");
+                return false;
+            }
+        }
+
+        public void Factorial()
+        {
+            if (facto < 0)
+            {
+                Console.WriteLine("Number is negative.");
+            }
+            else
+            {
+                int fact = 1;
+                for(int i=1;i<=facto;i++)
+                {
+                    fact *= i; 
+                }
+                Console.WriteLine("Factorial is " + fact);
+            }
+        }
+
+        protected internal void SqrRoot()
+        {
+            double d;
+            d = Math.Sqrt(root);
+            Console.WriteLine("Square root is " + d);
+        }
+    }   
+        
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Type type1 = typeof(Base);
+            object obj = Activator.CreateInstance(type1);
+            object[] mParam = new object[] { 5, 10 };
+            object[] mParam1 = new object[] { };
+            type1.InvokeMember("Add", BindingFlags.InvokeMethod,
+                                        null, obj, mParam);
+            type1.InvokeMember("Subtract", BindingFlags.InvokeMethod,
+                                        null, obj, mParam);
+            type1.InvokeMember("Factorial", BindingFlags.InvokeMethod,
+                                        null, obj, mParam1);
+
+            object[] mParam3 = new object[] { -10 };
+
+            bool res = (bool)type1.InvokeMember("IsPositive", BindingFlags.InvokeMethod,
+                                        null, obj, mParam3);
+            Console.Write("Result: {0} \n", res);
+
+            Base b1 = (Base)type1.InvokeMember("Base", BindingFlags.CreateInstance,
+                                        null, obj, mParam1);
+            Console.Write("Addone: {0} \n", b1.Addone);
+            Console.ReadKey();
+        }
+    }
+}
