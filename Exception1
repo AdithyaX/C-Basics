@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Exception1
+{
+    class Boiler
+    {
+        public double pressure =1000;
+
+        public void Increase()
+        {
+            
+            Console.WriteLine("Pressure is now " + pressure);
+            pressure += 100;
+        }
+
+        public void Decrease()
+        {
+            
+            Console.WriteLine("Pressure is now " + pressure);
+            pressure -= 100;
+        }
+    }
+
+    public class CustomExc : Exception
+    {
+        public CustomExc(string msg) : base(msg)
+        {
+            Console.WriteLine(msg);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Boiler b1 = new Boiler();
+            try
+            {
+                for(int i=0;i<=10;i++)
+                {
+                    b1.Increase();
+                    if(b1.pressure>2000)
+                    {
+                        throw new CustomExc("Boiler level over max");
+                    }
+
+                    else if(b1.pressure<500)
+                    {
+                        throw new CustomExc("Boiler level below min");
+                    }
+                }
+
+                for (int i = 0; i <= 10; i++)
+                {
+                    b1.Decrease();
+                    if (b1.pressure > 2000)
+                    {
+                        throw new CustomExc("Boiler level over max");
+                    }
+
+                    else if (b1.pressure < 500)
+                    {
+                        throw new CustomExc("Boiler level below min");
+                    }
+                }
+            }
+
+            catch(CustomExc e)
+            {
+                Console.WriteLine(e.StackTrace);
+            }
+            Console.ReadKey();
+        }
+    }
+}
