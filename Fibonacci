@@ -1,0 +1,43 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Fibonacci
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the number");
+            int num = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            int fib = 1;
+            int n1=0;
+            int n2 = 1;
+            int n3 = 0;
+            if(num==0|num==1)
+            {
+                Console.WriteLine(num);
+                return;
+            }
+            else if(num==2)
+            {
+                Console.WriteLine(num - 1);
+                return;
+            }
+            Console.WriteLine(n1);
+            Console.WriteLine(n2);
+            for(int i=2; i<=num;i++)
+            {
+                n3 = n1 + n2;
+                Console.WriteLine(n3);
+                n1 = n2;
+                n2 = n3;
+            }
+            
+            Console.ReadKey();
+        }
+    }
+}
