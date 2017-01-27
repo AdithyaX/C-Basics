@@ -1,0 +1,37 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsBig
+{
+    class Big
+    {
+        int m, n;
+        public void GetData()
+        {
+            Console.WriteLine("Please enter the numbers.");
+            m = int.Parse(Console.ReadLine());
+            n = int.Parse(Console.ReadLine());
+            CalcResult();
+        }
+
+        public void CalcResult()
+        {
+            if (m > n)
+            Console.WriteLine("{0} is bigger.", m);
+            else            
+            Console.WriteLine("{0} is bigger.", n);            
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Big b = new Big();
+            b.GetData();            
+            Console.ReadKey();
+        }
+    }
+}
