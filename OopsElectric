@@ -1,0 +1,63 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsElectric
+{
+    class Elec
+    {
+        string name;
+        int units;
+
+        public Elec(string name, int units)
+        {
+            this.name = name;
+            this.units = units;
+        }
+
+        public void calc(string name, int units)
+        {
+            double price;            
+            if(units>=300)
+            {
+                price = ((units-300)*60) + 4000 +10000;
+            }
+            else if(units<300 && units>=100)
+            {
+                price = ((units - 100) * 50) + 4000;
+            }
+            else
+            {
+                price = units * 40;
+            }
+
+            price = price / 100;
+
+            if(price<100)
+            {
+                price = 100;
+            }
+            else if(price >=250)
+            {
+                price = price + (0.15 * price);
+            }
+            Console.WriteLine("The user {0} consumed {1} units of electricity and generated a bill of Rs.{2}.", name, units, price);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your details.");
+            Console.WriteLine("Enter the username.");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter the number of units consumed.");
+            int units = int.Parse(Console.ReadLine());
+            Elec el = new Elec(name, units);
+            el.calc(name, units);
+            Console.ReadKey();            
+        }
+    }
+}
