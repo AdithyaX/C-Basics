@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Abstract2
+{
+    interface IWorldBank
+    {
+        void setHousingLoans();
+        void GrantRuralAid(String countryName);
+    }
+    interface IRBI : IWorldBank
+    {
+        void setHousingLoans();
+        void GrantRuralAid(String countryName);
+    }
+    class SBI : IRBI
+    {
+        public void setHousingLoans()
+        {
+            Console.WriteLine("SBI setHousingLoans");
+        }
+        public void GrantRuralAid(String countryName)
+        {
+            Console.WriteLine(countryName + " SBI GrantRuralAid");
+        }
+    }
+    class WorldBankTester
+    {
+        public static void Main(String[] args)
+        {
+            IWorldBank wb = new SBI();
+            wb.setHousingLoans();
+            wb.GrantRuralAid("India");
+            Console.ReadKey();
+            IRBI ir = new SBI();
+            ir.GrantRuralAid("USA");
+            ir.setHousingLoans();
+            Console.ReadKey();
+        }
+    }
+
+}
