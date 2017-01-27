@@ -1,0 +1,52 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace GivenPrime
+{
+      class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the larger number");
+            int large = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the smaller number");
+            int small = int.Parse(Console.ReadLine());
+            int flag=0;
+            Console.WriteLine();             
+             for (int i = small; i < large; i++)
+                {
+                 if(large<=2)
+                 {
+                     Console.WriteLine("No Prime Numbers");
+                     Console.ReadKey();
+                     return;
+                 }
+                    for (int j = 2; j <= i / 2; j++ )
+                    {
+                        flag = 0;
+                        if (i % j == 0)
+                        {
+                            flag = 1;
+                            break;
+                        }
+                        
+                    }
+                    if (flag == 0)
+                    {
+                        Console.WriteLine(i + " is prime.");
+                    }
+                    else
+                    {
+                        Console.WriteLine(i + " is not prime");
+                    }               
+                 
+                }
+
+                Console.ReadKey();
+                       
+        }
+    }
+}
