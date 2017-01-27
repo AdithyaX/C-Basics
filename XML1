@@ -1,0 +1,130 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.IO;
+using System.Xml;
+using System.Xml.Linq;
+
+namespace XML1
+{
+    class Xml1
+    {
+        public void XmlWrite()
+        {
+            //Write Data to XML File
+
+            XmlTextWriter writer = new XmlTextWriter("E:/Employees.xml", System.Text.Encoding.UTF8);
+            writer.WriteStartDocument(true);
+            writer.Formatting = Formatting.Indented;
+            writer.Indentation = 2;
+            writer.WriteStartElement("Employees");
+            createNode("1111", "Adam", "Kessler", "23000", "4", writer);
+            createNode("0000", "Adithya", "Sivanandan", "99000", "3", writer);
+            createNode("2222", "Naseer", "Kadir", "50000", "2", writer);
+            createNode("3333", "Jaggu", "Dada", "48000", "1", writer);
+            writer.WriteEndElement();
+            writer.WriteEndDocument();
+            writer.Close();
+        }
+
+        public void Sort()
+        {
+            //Read from XML File
+           
+            XElement xelement = XElement.Load(@"E:\Employees.xml");            
+            IEnumerable<XElement> employees = xelement.Elements();
+            
+            foreach(var employee in employees)
+            {
+                int dept = Int32.Parse(employee.Element("DeptID").Value);
+                if(dept==3)
+                {
+                    Console.WriteLine("Person Working For Dept 3:" + employee.Element("Name").Value);
+                }
+            }
+            foreach (var employee in employees)
+            {
+                int sal = Int32.Parse(employee.Element("Salary").Value);
+                if (sal >10000)
+                {
+                    Console.WriteLine("Person Salary Greater 10000:" + employee.Element("Name").Value);
+                }
+            }
+        }
+
+        public void Update()
+        {
+             //Editing XML File           
+
+            XmlDocument objDOM = new XmlDocument();
+            objDOM.Load(@"E:/Employees.xml");//Give input file name here
+            for (int iIndex = 0; iIndex < objDOM.DocumentElement.ChildNodes.Count; iIndex++)
+            {
+                if (objDOM.DocumentElement.ChildNodes[iIndex].Attributes["ID"] != null)
+                {
+                    if ((objDOM.DocumentElement.ChildNodes[iIndex].Attributes["ID"].Value).ToString() == "1111")
+                    {
+                        objDOM.DocumentElement.ChildNodes[iIndex].SelectSingleNode("Salary").InnerText = "8888";
+                        objDOM.DocumentElement.ChildNodes[iIndex].SelectSingleNode("DeptID").InnerText = "5555";
+                    }
+                }
+                objDOM.Save(@"E:/Employees.xml"); //Save updated File
+            }
+        }
+
+        public void Delete()
+        {
+            //Deleting from XML File
+
+            string path = "E:/Employees.xml";
+            XmlDocument XMLDoc = new XmlDocument();
+            XMLDoc.Load(path);
+            foreach (XmlNode entry in XMLDoc.SelectNodes("//Employee[@ID='3333']"))
+            {
+                entry.ParentNode.RemoveChild(entry);
+            }
+            XMLDoc.Save(path);
+        }
+         
+        
+
+        private void createNode(string empID, string first, string last, string salary, string dept, XmlTextWriter writer)
+        {
+            //Create Nodes in XML File
+
+            writer.WriteStartElement("Employee");
+            writer.WriteStartAttribute("ID");
+            writer.WriteString(empID);
+            writer.WriteEndAttribute();
+            writer.WriteStartElement("Name");
+            writer.WriteStartElement("First");
+            writer.WriteString(first);
+            writer.WriteEndElement();
+            writer.WriteStartElement("Last");
+            writer.WriteString(last);
+            writer.WriteEndElement();
+            writer.WriteEndElement();
+            writer.WriteStartElement("Salary");
+            writer.WriteString(salary);
+            writer.WriteEndElement();
+            writer.WriteStartElement("DeptID");
+            writer.WriteString(dept);
+            writer.WriteEndElement();
+            writer.WriteEndElement();
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Xml1 one = new Xml1();
+            one.XmlWrite();
+            one.Sort();
+            one.Update();
+            one.Delete();
+            Console.ReadKey();
+        }
+    }
+}
