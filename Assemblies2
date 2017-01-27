@@ -1,0 +1,103 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assembly2
+{
+    public class Admin
+    {
+        public void meth1()
+        {
+            Console.WriteLine("Public method of Admin");
+        }
+
+        protected void meth2()
+        {
+            Console.WriteLine("Protected method of Admin");
+        }
+
+        internal void meth3()
+        {
+            Console.WriteLine("Internal method of Admin");
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assembly2x
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Sales.Sales s1 = new Sales.Sales();
+            s1.meth1();
+            Assembly2.Admin a1 = new Assembly2.Admin();
+            a1.meth1();
+            HR.HR h1 = new HR.HR();
+            h1.meth1();
+            Console.ReadKey();
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace HR
+{
+    public class HR
+    {
+        public void meth1()
+        {
+            Console.WriteLine("Public method of Admin");
+        }
+
+        protected void meth2()
+        {
+            Console.WriteLine("Protected method of Admin");
+        }
+
+        internal void meth3()
+        {
+            Console.WriteLine("Internal method of Admin");
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Sales
+{
+    public class Sales
+    {
+        public void meth1()
+        {
+            Console.WriteLine("Public method of Admin");
+        }
+
+        protected void meth2()
+        {
+            Console.WriteLine("Protected method of Admin");
+        }
+
+        internal void meth3()
+        {
+            Console.WriteLine("Internal method of Admin");
+        }
+    }
+}
