@@ -1,0 +1,98 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Inherit5
+{
+    class Account
+    {
+        public double bal = 0;
+        public double interest = 0;
+        public void deposit(double dep)
+        {
+            bal = bal + dep;
+            Console.WriteLine("Deposited Rs.{0}. The updated balance is {1}", dep, bal);
+        }
+
+        public void withdraw(double with)
+        {
+            if(bal>=with)
+            {
+                bal = bal - with;
+                Console.WriteLine("Withdrew Rs.{0}. The updated balance is {1}", with, bal);
+            }
+            else
+            {
+                Console.WriteLine("Insufficient funds.");
+            }
+        }
+
+    }
+
+    class Savings : Account
+    {        
+        public void DailyInterest(Account acc)
+        {
+            for(int i=0 ; i<30;i++)
+            {
+                acc.interest = acc.bal * (0.06 / 30);
+                acc.bal = acc.bal + acc.interest;
+                Console.WriteLine("The Savings Interest for day {0} is {1} and the updated balance is {2}", i+1, acc.interest, acc.bal);
+            }
+        }
+
+    }
+
+    class Checking : Account
+    {
+        public void DailyInterest(Account acc)
+        {
+            if (acc.bal >= 1000)
+            {
+            for (int i = 0; i < 30; i++)
+            {
+                
+                {
+                    acc.interest = acc.bal * (0.05 / 30);
+                    acc.bal = acc.bal + acc.interest;
+                    Console.WriteLine("The Checking Interest for day {0} is {1} and the updated balance is {2}", i+1, acc.interest, acc.bal);
+                }
+            }
+            }
+                else
+                {
+                    Console.WriteLine("Not applicable for Interest. Balance too low.");
+                }
+            
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Account a1 = new Account();
+            a1.deposit(355000);
+            a1.withdraw(35000);
+            Console.WriteLine("Enter the type of account. Savings or Checking.");
+            string type = Console.ReadLine();
+            if (type == "Savings")
+            {
+                Savings s1 = new Savings();
+                s1.DailyInterest(a1);
+            }
+            else if (type == "Checking")
+            {
+                Checking c1 = new Checking();
+                c1.DailyInterest(a1);
+            }
+            else
+            {
+                Console.WriteLine("Enter a valid account type.");
+            }
+            Console.ReadKey();
+        }
+    }
+}
