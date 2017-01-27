@@ -1,0 +1,38 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace EvenOdd
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your number");
+            try
+            {
+               int n = int.Parse(Console.ReadLine());
+                      
+            if(n%2==0)
+            {
+                Console.WriteLine("Given number is even.");
+            }
+            else if(n%2!=0)
+            {
+                Console.WriteLine("Given number is odd.");
+            }
+            else
+            {
+                Console.WriteLine("Enter a valid number.");
+            }
+            }
+            catch (FormatException f)
+            {
+                Console.WriteLine(f.StackTrace);
+            }
+            Console.ReadKey();
+        }
+    }
+}
