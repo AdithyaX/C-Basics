@@ -1,0 +1,61 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsAccount
+{
+    class Account
+    {
+        public int id = 9876543;
+        public String name = "Adithya";
+        private int accountno;
+        private int intrate = 10;
+        private string password;
+
+        public int Accountno
+        {
+            set
+            {
+                accountno = value;
+            }
+
+            get
+            {
+                return accountno;
+            }
+
+        }
+
+        public int IntRate
+        {
+            get
+            {
+                return intrate;
+            }
+        }
+
+        public string Password
+        {
+            set
+            {
+                password = value;
+            }
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Account ac = new Account();
+            ac.Accountno = 2134567;
+            Console.WriteLine("Account name is: " + ac.name);
+            Console.WriteLine("Account id is: " + ac.id);
+            Console.WriteLine("Account number is: " + ac.Accountno);
+            Console.WriteLine("Interest Rate is: " + ac.IntRate);
+            ac.Password = "Ditto";
+            Console.ReadKey();
+        }
+    }
+}
