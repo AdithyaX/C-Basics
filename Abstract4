@@ -1,0 +1,62 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Abstract4
+{
+    interface IUser
+    {
+        void CheckMail();
+        void CelebrateVacation();
+    }
+
+    interface IEmployee
+    {
+        void Work(int hours);
+        void GetSalary();
+    }
+
+    class Person : IUser, IEmployee
+    {
+        public void MakeFood()
+        {
+            Console.WriteLine("Person is making food.");
+        }
+
+        public void CheckMail()
+        {
+            Console.WriteLine("Person is checking mail.");
+        }
+        public void CelebrateVacation()
+        {
+            Console.WriteLine("Person is celebrating vacation.");
+        }
+
+        public void Work(int hours)
+        {
+            Console.WriteLine("Person has worked {0} hours this week.", hours);
+        }
+        public void GetSalary()
+        {
+            Console.WriteLine("Person is earning salary");
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            IUser iu = new Person();
+            IEmployee ie = new Person();            
+            iu.CelebrateVacation();
+            iu.CheckMail();
+            ie.GetSalary();
+            ie.Work(20);
+            Person p = (Person)iu;
+            p.MakeFood();
+            Console.ReadKey();
+        }
+    }
+}
