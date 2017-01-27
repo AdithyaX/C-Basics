@@ -1,0 +1,78 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Inherit4
+{
+    class Account
+    {
+        int num;
+        string name;
+        public double bal;
+        byte accode;
+
+        public Account(int num)
+        {
+            this.num = num;
+        }
+
+        public Account(string name)
+        {
+            this.name = name;
+        }
+
+        public Account(double bal)
+        {
+            this.bal = bal;
+        }
+
+        public Account(byte accode)
+        {
+            this.accode = accode;
+        }
+
+        public Account()
+        {
+
+        }
+    }
+
+    class User : Account
+    {
+        int groupno;
+        public string mailid;
+
+        public User(int groupno)
+        {
+            this.groupno = groupno;
+            Account ac1 = new Account(35.50);
+        }
+
+        public User(string mailid) : base(35.3)
+        {            
+            this.mailid = mailid;
+        }
+
+        public User()
+        {
+
+        }
+    }
+
+    sealed class Admin
+    {
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            User u1 = new User("Ditto.Ace@gmail.com");
+            Console.WriteLine(u1.mailid);
+            Console.WriteLine(u1.bal);
+            Console.ReadKey();
+        }
+    }
+}
