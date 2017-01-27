@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Inherit6
+{
+    class Worker
+    {
+        protected string name;
+        protected double salaryrate;
+        protected int hours;
+        protected double salary;
+        
+        public Worker(string name, double salaryrate, int hours)
+        {
+            this.name = name;
+            this.salaryrate = salaryrate;
+            this.hours = hours;
+        }
+
+        public Worker()
+        {
+
+        }
+        public virtual void ComputePay()
+        {
+
+        }
+    }
+
+    class HourlyWorker : Worker
+    {
+        public HourlyWorker(string name, double salaryrate, int hours)
+        {
+            this.name = name;
+            this.salaryrate = salaryrate;
+            this.hours = hours;
+        }
+        public override void ComputePay()
+        {
+            if (this.hours <= 40)
+            {
+                this.salary = hours * salaryrate;
+            }
+            else
+            {
+                this.salary = 40 * this.salaryrate;
+                this.salary += this.salaryrate * 1.5 * (this.hours - 40);
+            }
+            Console.WriteLine("The Worker {1}'s weekly salary is Rs.{0}.", this.salary,this.name);            
+        }
+    }
+
+    class SalariedWorker : Worker
+    {
+        public SalariedWorker(string name, double salaryrate)
+        {
+            this.name = name;
+            this.salaryrate = salaryrate;            
+        }
+        public override void ComputePay()
+        {            
+                this.salary = 40 * this.salaryrate;
+
+                Console.WriteLine("The Worker {1}'s weekly salary is Rs.{0}.", this.salary, this.name);               
+        }
+
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the Worker's name.");
+            string name = Console.ReadLine();
+            Console.WriteLine("Enter the Worker's salary rate.");
+            double salaryrate = Convert.ToDouble(Console.ReadLine());
+            Console.WriteLine("Enter the Worker's type. Hourly or Salaried.");
+            string type = Console.ReadLine();
+
+            if(type == "Salaried")
+            {
+                SalariedWorker sw = new SalariedWorker(name, salaryrate);
+                sw.ComputePay();
+            }
+            else if(type == "Hourly")
+            {
+                Console.WriteLine("Enter the total hours worked.");
+                int hours = Convert.ToInt32(Console.ReadLine());
+                HourlyWorker hw = new HourlyWorker(name, salaryrate, hours);
+                hw.ComputePay();
+            }
+            else
+            {
+                Console.WriteLine("Choice Invalid.");
+            }
+            Console.ReadKey();
+        }
+    }
+}
