@@ -1,0 +1,101 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Matrix
+{
+    class Program
+    {
+
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the matrix size");
+            int n = int.Parse(Console.ReadLine());
+            int[,] arr1 = new int[n,n];
+            int[,] arr2 = new int[n,n];
+            int[,] arr3 = new int[n,n];
+            int mult = 0;
+            Console.WriteLine("Enter the first array elements");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++ )
+                {
+                    arr1[i,j] = int.Parse(Console.ReadLine());
+                }                    
+            }
+
+            Console.WriteLine("Enter the second array elements");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    arr2[i, j] = int.Parse(Console.ReadLine());
+                }
+            }
+
+            Console.WriteLine("The first array is:");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write(arr1[i, j] + " "); 
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("The second array is:");
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    Console.Write(arr2[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Addition:");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    arr3[i, j] = arr1[i, j] + arr2[i, j];
+                    Console.Write(arr3[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Subtraction:");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    arr3[i, j] = arr1[i, j] - arr2[i, j];
+                    Console.Write(arr3[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.WriteLine("Multiplication:");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < n; j++)
+                {
+                    for (int k = 0; k < n; k++)
+                    {
+                        mult = mult + (arr1[i, k] * arr2[k, j]);                     
+                    }
+                    arr3[i, j] = mult;
+                    mult = 0;
+                    Console.Write(arr3[i, j] + " ");
+                }
+                Console.WriteLine();
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
+
