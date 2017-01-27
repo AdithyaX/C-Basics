@@ -1,0 +1,64 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsStudent
+{
+    class Student : IComparable
+    {
+        int roll;
+        string sclass;
+        string name;
+        double marks;
+
+        public Student(int roll, string sclass, string name, double marks)
+        {
+            this.roll = roll;
+            this.sclass = sclass;
+            this.name = name;
+            this.marks = marks;
+        }
+
+        public int CompareTo(Object obj)
+        {
+            Student that = (Student)obj;
+            if (this.marks < that.marks)
+                return 1;
+            else if (this.marks == that.marks)
+                return 0;
+            else
+                return -1;
+        }
+
+        public override string ToString()
+        {            
+            return "Student "+name+" with roll number "+roll+" scored "+marks+" marks and secured a class of "+sclass+".";
+        } 
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Student st1 = new Student(123, "B", "Sidhu", 75.3);
+            Student st2 = new Student(456, "A", "Nishant", 89.3);
+            Student st3 = new Student(736, "D", "Gunjan", 55.3);
+            Student st4 = new Student(123, "C", "Adithya", 65.6);
+
+            SortedSet<Student> ss = new SortedSet<Student>();
+
+            ss.Add(st1);
+            ss.Add(st2);
+            ss.Add(st3);
+            ss.Add(st4);
+
+            foreach(Student st in ss)
+            {
+                Console.WriteLine(st);
+            }
+            Console.ReadKey();
+
+        }
+    }
+}
