@@ -1,0 +1,29 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace ReadArray
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the array size");
+            int n = int.Parse(Console.ReadLine());
+            int[] arr = new int[n];
+            Console.WriteLine("Enter the array elements");
+            for(int i = 0; i<n; i++)
+            {
+                arr[i] = int.Parse(Console.ReadLine());
+            }
+            Console.WriteLine();
+            foreach(int i in arr)
+            {
+                Console.WriteLine(i);
+            }
+            Console.ReadKey();
+        }
+    }
+}
