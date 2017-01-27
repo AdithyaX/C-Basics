@@ -1,0 +1,45 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Threading;
+
+namespace Thread1
+{
+    class Boiler
+    {
+        public double pressure = 1000;
+
+        public void Increase()
+        {
+
+            Console.WriteLine("Pressure is now " + pressure);
+            pressure += 100;
+            Thread.Sleep(100);
+        }
+
+        public void Decrease()
+        {
+
+            Console.WriteLine("Pressure is now " + pressure);
+            pressure -= 100;
+            Thread.Sleep(200);
+        }
+    }
+
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Boiler b1 = new Boiler();
+            ThreadStart ts = new ThreadStart(b1.Increase);
+            Thread t1 = new Thread(b1.Increase);
+            t1.Start();
+            ThreadStart ts1 = new ThreadStart(b1.Decrease);
+            Thread t2 = new Thread(b1.Decrease);
+            t2.Start();
+            Console.ReadKey();
+        }
+    }
+}
