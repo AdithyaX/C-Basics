@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Generic1
+{
+    class Student_Record_ProgramUsingCollection
+    {
+        List<information> sInfoList = new List<information>();
+        public bool flag = true;
+        public static void Main(String[] g)
+        {
+            Student_Record_ProgramUsingCollection sin = new Student_Record_ProgramUsingCollection();
+            string choice = "";
+
+            while (choice != "exit")
+            {
+                Console.WriteLine("Enter choice : add or com ");
+                choice = Console.ReadLine();
+                switch (choice)
+                {
+                    case "add":
+                        sin.add_student();
+                        break;
+                    case "com":
+                        sin.xcompare();
+                        break;
+                }
+            }
+
+        }
+        public void add_student()
+        {
+            information sInfo = new information();
+
+            Console.Write("Enter the Student Roll : ");
+            sInfo.roll = int.Parse(Console.ReadLine());
+            Console.Write("Enter the Student marks :");
+            sInfo.marks = double.Parse(Console.ReadLine());
+            Console.Write("Enter the Student class : ");
+            sInfo.clas = Console.ReadLine();
+            Console.Write("Enter the Student name : ");
+            sInfo.name = Console.ReadLine();
+            sInfoList.Add(sInfo);
+
+        }
+        public void xcompare()
+        {
+            double temp = 0;
+            int roll = 0;
+            string namecl = "";
+            double count = sInfoList.Count;
+            //Console.Write(count);
+            for (int write = 0; write < count; write++)
+            {
+                for (int sort = 0; sort < count - 1; sort++)
+                {
+                    if (sInfoList[sort].marks > sInfoList[sort + 1].marks)
+                    {
+                        temp = sInfoList[sort + 1].marks;
+                        sInfoList[sort + 1].marks = sInfoList[sort].marks;
+                        sInfoList[sort].marks = temp;
+
+                        roll = sInfoList[sort + 1].roll;
+                        sInfoList[sort + 1].roll = sInfoList[sort].roll;
+                        sInfoList[sort].roll = roll;
+
+                        namecl = sInfoList[sort + 1].clas;
+                        sInfoList[sort + 1].clas = sInfoList[sort].clas;
+                        sInfoList[sort].clas = namecl;
+
+                        namecl = sInfoList[sort + 1].name;
+                        sInfoList[sort + 1].name = sInfoList[sort].name;
+                        sInfoList[sort].name = namecl;
+                    }
+                }
+                // Console.Write("{0} ", sInfoList[write].marks);  
+            }
+
+            for (int write = 0; write < count; write++)
+            {
+                Console.Write("Marks Is " + sInfoList[write].marks + ", Name Is " + sInfoList[write].name + ", Roll Is " + sInfoList[write].roll + ", Class Is " + sInfoList[write].clas + "");
+                Console.WriteLine();
+            }
+        }
+        //sInfoList.Sort();
+    }
+}
+
+class information
+{
+    public int roll;
+    public double marks;
+    public string clas;
+    public string name;
+    public override string ToString()
+    {
+        // String representation.
+        return this.marks.ToString() + "," + this.roll.ToString() + "," + this.clas + "," + this.name;
+    }
+
+}
