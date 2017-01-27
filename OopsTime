@@ -1,0 +1,105 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsTime
+{
+    class user_time
+    {
+        public int hours;
+        public int mins;
+        public int secs;
+
+        public user_time()
+        {
+            this.hours = 0;
+            this.mins = 0;
+            this.secs = 0;
+        }
+
+        public user_time(int hours, int mins, int secs)
+        {
+            this.hours = hours;
+            this.mins = mins;
+            this.secs = secs;
+        }
+
+        public void disp()
+        {
+            Console.WriteLine("The time is : {0}:{1}:{2}", hours, mins, secs);
+        }
+
+        public static void Add(user_time one, user_time two)
+        {
+            int tothours;
+            int totmins;
+            int totsecs;
+
+            tothours = one.hours + two.hours;
+            totmins = one.mins + two.mins;
+            totsecs = one.secs + two.secs;
+
+            if(tothours==23 && totmins==60 && totsecs==60)
+            {
+                Console.WriteLine("The sum time is : 00:00:00");
+                return;
+            }
+
+            if(totsecs>=60)
+            {
+                totsecs = totsecs - 60;
+                totmins++;
+            }
+            if(totmins>=60)
+            {
+                totmins = totmins - 60;
+                tothours++;
+            }
+            if(tothours>=24)
+            {
+                tothours = tothours - 24;
+            }
+            Console.WriteLine("The sum time is : {0}:{1}:{2}", tothours, totmins, totsecs);
+        }
+
+        public static void Sub(user_time one, user_time two)
+        {
+            int tothours;
+            int totmins;
+            int totsecs;
+
+            tothours = one.hours - two.hours;
+            totmins = one.mins - two.mins;
+            totsecs = one.secs - two.secs;
+                        
+            if (totsecs <= 0)
+            {
+                totsecs = totsecs + 60;
+                totmins--;
+            }
+            if (totmins <= 0)
+            {
+                totmins = totmins + 60;
+                tothours--;
+            }
+            if (tothours <= 0)
+            {
+                tothours = tothours + 24;
+            }
+            Console.WriteLine("The sum time is : {0}:{1}:{2}", tothours, totmins, totsecs);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            user_time t1 = new user_time(2, 2, 3);
+            user_time t2 = new user_time(23, 49, 54);
+            user_time.Add(t1, t2);
+            user_time.Sub(t1, t2);
+            Console.ReadKey();
+        }
+    }
+}
