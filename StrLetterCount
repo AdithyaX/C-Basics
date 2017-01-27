@@ -1,0 +1,40 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StrLetterCount
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your string.");
+            string s = Console.ReadLine();
+            SortedSet<char> st = new SortedSet<char>();            
+            int count;
+            char[] arr = new char[s.Length];
+            foreach(char c in s)
+            {
+                count = 0;
+                foreach(char d in s)
+                {
+                    if(c==d)
+                    {
+                        count++;
+                    }
+                }
+
+                if (!st.Contains(c) && (c!= ' '))
+                {
+                    st.Add(c);
+                    Console.WriteLine("{0} - {1}", c, count);
+                }
+
+            }            
+            Console.ReadKey();
+        }
+    }
+}
