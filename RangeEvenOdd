@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace RangeEvenOdd
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the larger number");
+            int large = int.Parse(Console.ReadLine());
+            Console.WriteLine("Enter the smaller number");
+            int small = int.Parse(Console.ReadLine());
+            Console.WriteLine();
+            for(int i=small;i<=large;i++)
+            {
+                if(i%2==0)
+                {
+                    Console.WriteLine(i + " is even.");
+                }
+                else
+                {
+                    Console.WriteLine(i + " is odd.");
+                    
+                }
+            }
+            Console.ReadKey();
+        }
+    }
+}
