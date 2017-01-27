@@ -1,0 +1,149 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Overload2
+{
+    class Mat1
+    {
+        static int n, m;
+        public static int[,] readMat()
+        {
+            Console.WriteLine("Enter the order of the matrix ");
+            n = int.Parse(Console.ReadLine());
+            m = int.Parse(Console.ReadLine());
+            int[,] mat = new int[n, m];
+            Console.WriteLine("Enter " + n * m + " elements..");
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    mat[i, j] = int.Parse(Console.ReadLine());
+                }
+
+            }
+            return mat;
+        }
+        public static void dispMat(int[,] ar)
+        {
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    Console.Write(ar[i, j] + "  ");
+                }
+                Console.WriteLine();
+            }
+        }
+        public static int[,] mul1(int a, int[,] b)
+        {
+
+            int[,] mul = new int[n, m];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    mul[i, j] = a * b[i, j];
+                }
+
+            }
+            return mul;
+        }
+        public static int[,] mul2(int[,] a, int[,] b)
+        {
+
+            int[,] mul = new int[n, m];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    for (int k = 0; k < m; k++)
+                    {
+                        mul[i, j] = mul[i, j] + a[i, k] * b[k, j];
+                    }
+
+                }
+
+            }
+            return mul;
+        }
+        public static int[,] mul3(int[,] a, int b)
+        {
+
+            int[,] mul = new int[n, m];
+
+            for (int i = 0; i < n; i++)
+            {
+                for (int j = 0; j < m; j++)
+                {
+                    mul[i, j] = a[i, j] * b;
+                }
+
+            }
+            return mul;
+        }
+        class Matrix1
+        {
+            public Matrix1() { }
+            private int[,] value;
+            public Matrix1(int[,] matrix1)
+            {
+                value = matrix1;
+            }
+            public int[,] MatrixToInt()
+            {
+                return this.value;
+            }
+
+            public static Matrix1 operator *(Matrix1 a, Matrix1 b)
+            {
+                return new Matrix1(Mat1.mul2(a.MatrixToInt(), b.MatrixToInt()));
+            }
+
+            public static Matrix1 operator *(int a, Matrix1 b)
+            {
+                return new Matrix1(Mat1.mul1(a, b.MatrixToInt()));
+            }
+            public static Matrix1 operator *(Matrix1 a, int b)
+            {
+                return new Matrix1(Mat1.mul3(a.MatrixToInt(), b));
+            }
+        }
+        static void Main(string[] args)
+        {
+            int[,] c = Mat1.readMat();
+            int[,] d = Mat1.readMat();
+            Matrix1 ma = new Matrix1(c);
+            Matrix1 mb = new Matrix1(d);
+            int g = 1;
+            while (g < 4)
+            {
+                Console.WriteLine("Enter 1 for matrix mult, 2 for matrix x 2, 3 for 2 x matrix  ");
+                int n1 = int.Parse(Console.ReadLine());
+
+                switch (n1)
+                {
+                    case 1: Matrix1 mc = ma * mb;
+                        Mat1.dispMat(mc.MatrixToInt());
+                        Console.ReadKey();
+                        break;
+                    case 2: Matrix1 md = ma * 2;
+                        Mat1.dispMat(md.MatrixToInt());
+                        Console.ReadKey();
+                        break;
+                    case 3: Matrix1 m21 = 2 * mb;
+                        Mat1.dispMat(m21.MatrixToInt());
+                        Console.ReadKey();
+                        break;
+                    default: Console.WriteLine("Invalid");
+                        break;
+                }
+            }
+        }
+    }
+}
