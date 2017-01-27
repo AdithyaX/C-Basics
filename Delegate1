@@ -1,0 +1,46 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Delegate1
+{
+   delegate string  StrMod(string str);
+
+    class DelegateTest
+    {
+        public static string Replace(string str)
+        {
+            string temp = "";
+            for(int i=0; i<str.Length;i++)
+            {
+                temp = temp + str[i];
+                temp = temp + " ";
+            }
+            return temp;
+        }
+
+        public static string Reverse(string str)
+        {
+            string temp = "";
+            for(int i =str.Length-1; i>=0;i--)
+            {
+                temp = temp + str[i];
+            }
+            return temp;
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            StrMod s1 = new StrMod(DelegateTest.Replace);
+            StrMod s2 = new StrMod(DelegateTest.Reverse);
+
+            Console.WriteLine(s1("Adithya"));
+            Console.WriteLine(s2("Adithya"));
+            Console.ReadKey();
+        }
+    }
+}
