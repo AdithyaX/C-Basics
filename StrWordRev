@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StrWordRev
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your string.");
+            string s = Console.ReadLine();
+            string[] arr = s.Split(new[] { ' ' });
+            Console.WriteLine();
+             for (int i = arr.Length-1; i >= 0; i-- )
+            {
+                Console.Write(arr[i]+" ");
+            }
+             Console.ReadKey();
+        }
+    }
+}
