@@ -1,0 +1,119 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsStack
+{    
+    class Program
+    {
+        public static int max = 5;
+        public static int[] data = new int[max];
+        public static int top = -1;
+        public static int temp;
+
+        public void Push(int num)
+        {
+            if(top<max-1)
+            {
+                data[top+1] = num;
+                Console.WriteLine("Pushed {0} onto Stack.",num);
+                top++;
+            }
+            else
+            {
+                Console.WriteLine("Stack is full");
+            }
+        }
+
+        public int Pop()
+        {
+            if(top>-1)
+            {
+                top--;
+                return data[top+1];                
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public int Peek()
+        {
+            if(top>=0)
+            {
+                return data[top];
+            }
+            else
+            {
+                return -1;
+            }
+        }
+
+        public bool IsFull()
+        {
+            if(top>=max-1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        public bool IsEmpty()
+        {
+            if (top <= -1)
+            {
+                return true;
+            }
+            else
+            {
+                return false;
+            }
+        }
+
+        static void Main(string[] args)
+        {
+            Program pg = new Program();
+            pg.Push(10);
+            pg.Push(20);
+            pg.Push(30);
+            pg.Push(40);
+            pg.Push(50);
+            pg.Push(60);
+
+            Console.WriteLine();
+            temp = pg.Peek();
+            Console.WriteLine(temp);
+            temp = pg.Peek();
+            Console.WriteLine(temp);
+            Console.WriteLine();
+
+            while(!pg.IsEmpty())
+            {
+                temp = pg.Pop();
+                Console.WriteLine(temp);
+            }
+
+            Console.WriteLine();
+
+            while (!pg.IsFull())
+            {
+                pg.Push(66);                
+            }
+
+            Console.WriteLine();
+
+            while (!pg.IsEmpty())
+            {
+                temp = pg.Pop();
+                Console.WriteLine(temp);
+            }
+            Console.ReadKey();
+        }
+    }
+}
