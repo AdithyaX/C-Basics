@@ -1,0 +1,36 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Data.Sql;
+using System.Data;
+using System.Data.SqlClient;
+
+namespace Adonet
+{
+    class Program
+    {
+
+        public static void Main(string[] args)
+        {
+            string conectionString = @"Data Source=DESKTOP-FI56HHC\SQLEXPRESS;Initial Catalog=Emp;Integrated Security=True";
+            SqlConnection connection = new SqlConnection(conectionString);
+            connection.Open();
+            string query = "Select * from EmpTb";
+            //string query = "create database db1; create table tb1(EmpID int not null primary key, Empname nvarchar(10) not null, EmpAddress nvarchar(10) not null, Phone int not null);";
+            SqlCommand cmd = new SqlCommand(query, connection);
+            SqlDataReader dataRead = cmd.ExecuteReader();
+            while (dataRead.Read() == true)
+            {
+                var eid = dataRead.GetSqlInt64(0);
+                string empName = dataRead.GetString(1);
+                string empAddress = dataRead.GetString(2);
+                var phone = dataRead.GetSqlInt64(3);
+                Console.WriteLine("Employee ID: {0}, Employee Name: {1}, Employee Address: {2}, Employee Phone: {3}",eid,empName,empAddress,phone);
+
+            }
+            Console.ReadKey();
+        }
+    }
+}
