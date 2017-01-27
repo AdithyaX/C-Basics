@@ -1,0 +1,42 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsAccountOverload
+{
+    class Account
+    {
+        public int no;
+        public string type;
+        public double balance;
+
+        public Account()
+        {
+            Console.WriteLine("This is the default constructor.");
+            
+        }
+
+        public Account(int no) : this()
+        {
+            this.no = no;
+            Console.WriteLine("This constructor passes the account number value as {0}",no);
+        }
+
+        public Account(int no, string type, double balance) : this(no)
+        {
+            this.type = type;
+            this.balance = balance;
+            Console.WriteLine("This constructor passes the account type as {0} and balance as {1}", type, balance);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Account a1 = new Account(12345, "Savings", 504556.20);
+            Console.ReadKey();
+        }
+    }
+}
