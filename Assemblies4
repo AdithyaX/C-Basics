@@ -1,0 +1,93 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assemblies4
+{
+    public class Class1
+    {
+        public void Add(int one, int two)
+        {
+            Console.WriteLine(one + two);
+        }
+
+        protected void Subtract(int one, int two)
+        {
+            Console.WriteLine(one - two);
+        }
+
+        private void IsPositive(int num)
+        {
+            if(num>=0)
+            {
+                Console.WriteLine("Number is positive.");
+            }
+
+            else
+            {
+                Console.WriteLine("Number is negative.");
+            }
+        }
+
+        internal void Factorial(int num)
+        {
+            if (num<0)
+            {
+                Console.WriteLine("Number is negative.");
+            }
+            else
+            {
+                int fact = 1;
+                for(int i=1;i<=num;i++)
+                {
+                    fact *= i; 
+                }
+                Console.WriteLine("Factorial is " + fact);
+            }
+        }
+
+        protected internal void SqrRoot(int num)
+        {
+            double d;
+            d = Math.Sqrt(num);
+            Console.WriteLine("Square root is " + d);
+        }
+    }
+
+    public class Class2 : Class1
+    {
+       public void Init()
+        {
+            Add(10,20);
+            Subtract(10, 20);
+            SqrRoot(82);
+            Factorial(5);
+        }
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Assemblies4;
+
+namespace Ass4Console
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Class1 cls = new Class1();
+            cls.Add(30,40);
+            Console.WriteLine();
+            Class2 cls2 = new Class2();
+            cls2.Init();
+            Console.ReadKey();
+        }
+    }
+}
+
