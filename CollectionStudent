@@ -1,0 +1,102 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace CollectionStudent
+{
+    class CustomSort
+    {
+        private Object[] arr = new Object[10];
+        private int max = 0;
+
+        public Object[] getarr
+        {
+            get
+            {
+                return arr;
+            }
+            
+        }
+        public void Add(Object o)
+        {
+            if(!(max>arr.Length-1))
+            {
+            arr[max] = o;
+            Array.Sort(arr);
+            max++;
+            }
+
+            else
+            {
+                Object[] temp = new Object[max * 2];
+                for(int i=0;i<=max-1;i++)
+                {
+                    temp[i] = arr[i];
+                    arr = temp;
+                }
+                arr[max] = o;
+                Array.Sort(arr);
+            }
+        }
+
+    }
+
+    class Student : IComparable
+    {
+        int roll;
+        string sclass;
+        string name;
+        double marks;
+
+        public Student(int roll, string sclass, string name, double marks)
+        {
+            this.roll = roll;
+            this.sclass = sclass;
+            this.name = name;
+            this.marks = marks;
+        }
+
+        public int CompareTo(Object obj)
+        {
+            Student that = (Student)obj;
+            if (this.marks > that.marks)
+                return 1;
+            else if (this.marks == that.marks)
+                return 0;
+            else
+                return -1;
+        }
+
+        public override string ToString()
+        {
+            return "Student " + name + " with roll number " + roll + " scored " + marks + " marks and secured a class of " + sclass + ".";
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Student st1 = new Student(123, "B", "Sidhu", 75.3);
+            Student st2 = new Student(456, "A", "Nishant", 89.3);
+            Student st3 = new Student(736, "D", "Gunjan", 55.3);
+            Student st4 = new Student(123, "C", "Adithya", 65.6);
+
+            CustomSort cc = new CustomSort();
+
+            cc.Add(st1);
+            cc.Add(st2);
+            cc.Add(st3);
+            cc.Add(st4);
+
+            foreach (Student st in cc.getarr)
+            {
+                if(st!=null)
+                Console.WriteLine(st);
+            }
+
+            Console.ReadKey();
+        }
+    }
+}
