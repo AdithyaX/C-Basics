@@ -1,0 +1,48 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Assembliesx1
+{
+    class User
+    {
+        public void meth1()
+        {
+            Console.WriteLine("This is a public method.");
+        }
+
+        protected void meth2()
+        {
+            Console.WriteLine("This is a protected method.");
+        }
+
+        internal void meth3()
+        {
+            Console.WriteLine("This is an internal method.");
+        }
+
+    }
+}
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using Assembliesx1;
+
+namespace Assemblies1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            User u1 = new User();
+            u1.meth1();
+            u1.meth3();
+            Console.ReadKey();
+        }
+    }
+}
