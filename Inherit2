@@ -1,0 +1,70 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Inherit2
+{
+    public class Mould
+    {
+        protected string color = "Purple";
+        protected int price = 50;
+        protected int size;
+
+        public int ChangeSize(int size)
+        {
+            this.size = size;
+            return this.size;
+        }
+
+        public virtual int GetPrice()
+        {
+            return price;
+        }
+
+        public virtual string GetColor()
+        {
+            return color;
+        }
+
+    }
+
+    public class Statue : Mould
+    {
+        public override int GetPrice()
+        {
+            price = 80;
+            return price;
+        }
+
+        public override string GetColor()
+        {
+            color = "White";
+            return color;
+        }
+
+        public void shadow(int size)
+        {
+            Console.WriteLine("Current size of statue is " + this.size);
+            this.size = size;
+            Console.WriteLine("New size of statue is " + this.size);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Statue st = new Statue();
+            Mould mo = new Mould();
+            Console.WriteLine("Size of Mould is " + mo.ChangeSize(30));
+            Console.WriteLine("Price of Mould is " + mo.GetPrice());
+            Console.WriteLine("Color of Mould is " + mo.GetColor());
+
+            Console.WriteLine("Price of statue is " + st.GetPrice());
+            Console.WriteLine("Color of statue is " + st.GetColor());
+            st.shadow(99);
+            Console.ReadKey();
+        }
+    }
+}
