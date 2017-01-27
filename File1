@@ -1,0 +1,24 @@
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace File1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {         
+            string filepath = "E:/MyDataFile.txt";                    
+            
+            string data = "Testing file operations.";
+
+            StreamWriter sw = File.CreateText(filepath);
+            
+            sw.WriteLine(data);
+            sw.Close();
+        }
+    }
+}
