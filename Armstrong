@@ -1,0 +1,35 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Armstrong
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your number.");
+            int n = int.Parse(Console.ReadLine());
+            int m = n;
+            int arm = 0;
+            while(n>0)
+            {
+                arm += (int)Math.Pow(n%10,3);
+                n = n / 10;
+            }
+            Console.WriteLine(arm);
+            if (arm==m)
+            {
+                Console.WriteLine("Given number is Armstrong.");
+            }
+
+            else
+            {
+                Console.WriteLine("Given number is not Armstrong.");
+            }
+            Console.ReadKey();
+        }
+    }
+}
