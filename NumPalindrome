@@ -1,0 +1,33 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace NumPalindrome
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your number");
+            int n = int.Parse(Console.ReadLine());
+            int m = n;
+            int rev = 0;
+            while (n>0)
+            {
+                rev = (rev*10) + n%10;
+                n= n/10;
+            }
+            if (rev == m)
+            {
+                Console.WriteLine("Number is a palindrome.");
+            }
+            else
+            {
+                Console.WriteLine("Number is not a palindrome.");
+            }
+            Console.ReadKey();
+        }
+    }
+}
