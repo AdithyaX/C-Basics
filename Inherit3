@@ -1,0 +1,49 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Inherit3
+{
+    class Employee
+    {
+    }
+    class Manager : Employee
+    {
+        public string department;
+        public string name;
+        double sal;
+        public string PrintInfo(string nam, string dep, double sal)
+        {
+            department = dep;
+            name = nam;
+            this.sal = sal;
+            return "Your dept is " + department + " Name:- " + name + " Your salary is " + sal;
+        }
+    }
+    class Executive : Manager
+    {
+        public void Print(string dep, string n, double sal)
+        {
+            Console.WriteLine("Executive : " + base.PrintInfo(dep, n, sal));
+            Console.ReadKey();
+        }
+    }
+    public class Test
+    {
+        public static void Main(string[] args)
+        {
+            Executive e = new Executive();
+            Console.WriteLine("Plz enter name");
+            string n = Console.ReadLine();
+            Console.WriteLine("Plz enter department name");
+            string dept = Console.ReadLine();
+            Console.WriteLine("Plz enter sal");
+            double salary = double.Parse(Console.ReadLine());
+            e.Print(n, dept, salary);
+            Console.ReadKey();
+        }
+    }
+}
+
