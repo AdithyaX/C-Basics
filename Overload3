@@ -1,0 +1,66 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace Overload3
+{
+    class MyString
+    {
+
+        public String str;
+
+
+        public MyString(String str)
+        {
+            this.str = str;
+
+        }
+        public static bool operator ==(MyString m1, MyString m2)
+        {
+            bool status = false;
+            if ((m1.str.Length == m2.str.Length) && (m1.str.Equals(m2.str)))
+            {
+                status = true;
+            }
+            return status;
+        }
+        public static bool operator !=(MyString m1, MyString m2)
+        {
+            bool status = false;
+            if ((m1.str.Length != m2.str.Length) || (m1.str.Equals(m2.str)))
+            {
+                status = true;
+            }
+            return status;
+        }
+        public static String operator +(MyString m1, MyString m2)
+        {
+            String x = m1.str + m2.str;
+            return x;
+        }
+        public static string operator -(MyString m, MyString m2)
+        {
+            return m.str;
+        }
+        static void Main(string[] args)
+        {
+            MyString mm = new MyString("Adithya");
+            MyString m2 = new MyString("Siva");
+            if (mm == m2)
+            {
+                Console.WriteLine("Both the strings are equal");
+            }
+            else
+            {
+                Console.WriteLine("Both are not eaqual");
+            }
+
+            Console.WriteLine(mm + m2);
+            Console.WriteLine(mm - m2);
+
+            Console.ReadKey();
+        }
+    }
+}
