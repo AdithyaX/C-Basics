@@ -1,0 +1,74 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsAge
+{
+    
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter the date in the format dd/mm/yyyy");
+            String dob = Console.ReadLine();
+            string[] arr = dob.Split('/');
+            int bdate = int.Parse(arr[0]);
+            int bmonth = int.Parse(arr[1]);
+            int byear = int.Parse(arr[2]);
+            string today = DateTime.Today.ToString("dd/MM/yyyy");
+            string[] arr1 = today.Split('/');
+            int tdate = int.Parse(arr1[0]);
+            int tmonth = int.Parse(arr1[1]);
+            int tyear = int.Parse(arr1[2]);
+            int ageyear;
+            int agemonth=0;
+            int agedays =0;            
+            if((tmonth > bmonth)|((tmonth==bmonth)&&(tdate>bdate)))
+            {
+             ageyear = tyear- byear;
+            }
+            else
+            {
+             ageyear = tyear - byear - 1;
+            }
+            if (tmonth-bmonth < 0)
+            {
+                for (int i=bmonth; i<=12; i++)
+                {
+                    agemonth++;
+                }
+
+                for (int i=0; i<tmonth-1; i++)
+                {
+                    agemonth++;
+                }
+            }
+            else
+            {
+                agemonth = tmonth - bmonth;
+            }
+            if (tdate - bdate < 0)
+            {
+                for (int i = bdate; i <= 30; i++)
+                {
+                    agedays++;
+                }
+
+                for (int i = 0; i < tdate-1; i++)
+                {
+                    agedays++;
+                }
+                
+            }
+            else
+            {
+                agedays = tdate - bdate;
+            }
+            Console.WriteLine();
+            Console.WriteLine("Your age is {0} years, {1} months and {2} days.", ageyear,agemonth,agedays );           
+            Console.ReadKey();
+        }
+    }
+}
