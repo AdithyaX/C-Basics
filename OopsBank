@@ -1,0 +1,104 @@
+using System;
+using System.Collections.Generic;
+using System.Collections;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsBank
+{
+    class Account
+    {
+        public string name;
+        public int anum;
+        public string atype;
+        public double balance;
+        public static Hashtable ht = new Hashtable();
+
+        public Account(string name, int anum, string atype, double balance)
+        {
+            this.name = name;
+            this.anum = anum;
+            this.atype = atype;
+            this.balance = balance;
+        }
+
+        public static void Init()
+        {
+            Account a1 = new Account("Adithya",123,"Savings",10234.5);
+            Account a2 = new Account("Gunjan", 456, "Current", 7351.20);
+            Account a3 = new Account("Nishant", 789, "Savings", 5640.75);
+            Account a4 = new Account("Sidhu", 012, "Current", 25678.5);            
+            ht.Add(a1.anum, a1);
+            ht.Add(a2.anum, a2);
+            ht.Add(a3.anum, a3);
+            ht.Add(a4.anum, a4);
+        }
+
+        public static void Deposit(int anum)
+        {
+            Console.WriteLine("Enter the amount to deposit.");
+            int dep = int.Parse(Console.ReadLine());
+            ((Account)ht[anum]).balance = ((Account)ht[anum]).balance + dep;
+            Console.WriteLine("The updated balance in account number {0} is {1}.", anum, ((Account)ht[anum]).balance);
+        }
+
+        public static void Withdraw(int anum)
+        {
+            Console.WriteLine("Enter the amount to withdraw.");
+            int wit = int.Parse(Console.ReadLine());
+            if(wit<=((Account)ht[anum]).balance)
+            {
+                ((Account)ht[anum]).balance = ((Account)ht[anum]).balance - wit;
+            }
+            else
+            {
+                Console.WriteLine("Insufficient balance.");
+            }
+            Console.WriteLine("The updated balance in account number {0} is {1}.", anum, ((Account)ht[anum]).balance);
+        }
+
+        public static void Details(int anum)
+        {
+            Console.WriteLine("The name of the account number {0} is {1} and balance is {2}.", anum, ((Account)ht[anum]).name, ((Account)ht[anum]).balance);
+        }
+
+
+    }
+    class Program
+    {        
+        static void Main(string[] args)
+        {
+            int i = 1;
+            Account.Init();
+            while(i>0)
+            {
+                Console.WriteLine("Enter the account number.");
+                int n = int.Parse(Console.ReadLine());
+                Console.WriteLine("Make your choice:");
+                Console.WriteLine("1: Details");
+                Console.WriteLine("2: Deposit");
+                Console.WriteLine("3: Withdraw");
+                int c = int.Parse(Console.ReadLine());
+                switch(c)
+                {
+                    case 1: Account.Details(n);
+                        Console.WriteLine();
+                        break;
+                    case 2: Account.Deposit(n);
+                        Console.WriteLine();
+                        break;
+                    case 3: Account.Withdraw(n);
+                        Console.WriteLine();
+                        break;
+                    default: Console.WriteLine("Not a valid choice");
+                        Console.WriteLine();
+                        break;
+                }
+                Console.ReadKey();
+
+            }      
+            
+        }
+    }
+}
