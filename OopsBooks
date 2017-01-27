@@ -1,0 +1,83 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace OopsBooks
+{
+    class Book
+    {
+        public String title;
+            public String author;
+            public String publisher;
+            public float price;
+            public int stock;
+            public Book() { }
+            public static List<Book> b = new List<Book>();
+            
+        public Book(String title1,String author1,String publisher1,float price1,int stock1)
+            {
+                title = title1;
+                author = author1;
+                publisher = publisher1;
+                price = price1;
+                stock = stock1;
+            }
+        public override string ToString()
+        {
+            return title + " " + author + " " + publisher + " " + price + " " + stock;
+        }
+
+        public static void test()
+        {
+            Book b1 = new Book("a", "b", "c", 12, 5);
+            Book b2 = new Book("a", "d", "c", 12, 10);
+            Book b3 = new Book("a", "e", "c", 12, 5);
+            Book b4 = new Book("a", "f", "c", 12, 15);
+            Book b5 = new Book("a", "g", "c", 12, 5);
+            b.Add(b1); b.Add(b2); b.Add(b3); b.Add(b4); b.Add(b5);
+        }
+    }
+    class Program
+    {
+        static void Main(string[] args)
+        {
+
+            Book.test();
+            Console.WriteLine("enter the title");
+            String t = Console.ReadLine();
+            Console.WriteLine("enter the author");
+            String a = Console.ReadLine();
+            int available = 0; float cost = 0; bool cond = false;
+            foreach (Book bo in Book.b)
+            {
+                if (bo.author == a && bo.title == t)
+                {
+                    cond = true;
+                    available = bo.stock;
+                    cost = bo.price;
+                }
+            }
+            if (cond == true)
+            {
+                Console.WriteLine("book is available enter the copies required");
+                int count = int.Parse(Console.ReadLine());
+                if (count <= available)
+                {
+                    Console.WriteLine("books : " + count + "\nprice : Rs" + (count * cost));
+                }
+                else
+                {
+                    Console.WriteLine("copies not in stock");
+                }
+            }
+            else
+            {
+                Console.WriteLine("no book found");
+            }
+            Console.ReadKey();
+            }
+            
+        }
+ }
