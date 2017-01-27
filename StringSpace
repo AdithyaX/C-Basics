@@ -1,0 +1,28 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+
+namespace StringSpace
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            Console.WriteLine("Enter your string.");
+            string s = Console.ReadLine();
+            int space = 0;
+            for (int i = 0; i <= s.Length-1; i++)
+            {
+                if(s[i]==' ')
+                {
+                    space++;
+                }
+            }
+            Console.WriteLine();
+            Console.WriteLine("The number of spaces in the given string is: "+space);            
+            Console.ReadKey();
+        }
+    }
+}
